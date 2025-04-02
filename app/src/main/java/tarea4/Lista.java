@@ -20,10 +20,7 @@ public class Lista {
 
   private String toStringR(int a, int b) {
     String s = "";
-    int n = b - a + 1;
-    if (n == 0) {
-      // nada
-    } else {
+    if (a <= b) {
       s = s + this.elem[a];
       if (a < b)
         s = s + ", ";
@@ -37,15 +34,16 @@ public class Lista {
    * i, de la lista L1.
    */
   public void insertarIesimo(int x, int i) {
-    this.recorrerDer(i, this.cantElem);
-    this.elem[i] = x;
-    this.cantElem++;
+    this.insertarIesimoR(x, i, this.cantElem);
   }
 
-  private void recorrerDer(int i, int n) {
-    if (i < n) {
-      this.elem[n] = this.elem[n - 1];
-      this.recorrerDer(i, n - 1);
+  private void insertarIesimoR(int x, int i, int n) {
+    if (n < i) {
+      this.elem[i] = x;
+      this.cantElem++;
+    } else {
+      this.elem[n + 1] = this.elem[n];
+      insertarIesimoR(x, i, n - 1);
     }
   }
 
@@ -69,14 +67,16 @@ public class Lista {
    * 4. L1.eliminarIesimo(i) : Método que elimina el elemento de la posición i.
    */
   public void eliminarIesimo(int i) {
-    this.recorrerIzq(i, this.cantElem);
+    this.eliminarIesimoR(i, this.cantElem);
     this.cantElem--;
   }
 
-  private void recorrerIzq(int i, int n) {
-    if (i < n) {
+  private void eliminarIesimoR(int i, int n) {
+    if (i > n) {
+      this.cantElem--;
+    } else {
       this.elem[i] = this.elem[i + 1];
-      this.recorrerIzq(i + 1, n);
+      this.eliminarIesimoR(i + 1, n);
     }
   }
 
@@ -100,12 +100,12 @@ public class Lista {
    */
   public void insertarLugarAsc(int x) {
     this.insertarLugarAscR(0, this.cantElem - 1, x);
-    this.cantElem++;
   }
 
   private void insertarLugarAscR(int a, int b, int x) {
     if (b < 0 || this.elem[b] <= x) {
       this.elem[b + 1] = x;
+      this.cantElem++;
     } else {
       this.elem[b + 1] = this.elem[b];
       insertarLugarAscR(a, b - 1, x);
@@ -118,12 +118,12 @@ public class Lista {
    */
   public void insertarLugarDesc(int x) {
     this.insertarLugarDescR(0, this.cantElem - 1, x);
-    this.cantElem++;
   }
 
   private void insertarLugarDescR(int a, int b, int x) {
     if (b < 0 || this.elem[b] >= x) {
       this.elem[b + 1] = x;
+      this.cantElem++;
     } else {
       this.elem[b + 1] = this.elem[b];
       insertarLugarDescR(a, b - 1, x);
@@ -136,18 +136,16 @@ public class Lista {
    * 8, 1]
    */
   public void pasarDigitos(int n) {
-    if (n == 0) {
-      this.insertarPrim(0);
-      return;
-    }
     this.pasarDigitosR(n);
   }
 
   private void pasarDigitosR(int n) {
-    if (n > 0) {
+    if (n < 10) {
+      this.insertarPrim(n);
+    } else {
       int d = n % 10;
       this.insertarPrim(d);
-      this.pasarDigitosR(n / 10);
+      pasarDigitosR(n / 10);
     }
   }
 
@@ -393,9 +391,7 @@ public class Lista {
     if (n == 0) {
       return false;
     } else if (n == 1) {
-      if (this.elem[a] == x)
-        return true;
-      return false;
+      return this.elem[a] == x;
     } else {
       boolean tiene = this.tieneElementoR(a + 1, b, x);
       if (this.elem[a] == x) {
