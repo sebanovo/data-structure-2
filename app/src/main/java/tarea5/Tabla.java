@@ -2,6 +2,9 @@ package tarea5;
 
 public class Tabla {
   /**
+   * I. TABLA DE MULTIPLICAR CON DOS FACTORES A x B = C (dos ciclos anidados)
+   */
+  /**
    * 1. tabla( n ) : Procedimiento que muestra la tabla de multiplicación de 1 a
    * n.
    */
@@ -322,4 +325,222 @@ public class Tabla {
       imprimirTablaRecursivaSinRepeticion(n, i + 1, i);
     }
   }
+
+  /**
+   * II. TABLA DE MULTIPLICAR CON TRES FACTORES A x B x C = D (tres ciclos
+   * anidados)
+   */
+
+  /**
+   * 12. Incluir al menos 5 ejercicios adicionales cualesquiera, sobre una tabla
+   * de multiplicar de 3 factores.
+   */
+  /**
+   * 1. tablaSumaFactoresPar(int n)
+   */
+  // iterativo
+  public static void tablaSumaFactoresPar(int n) {
+    for (int a = 1; a <= n; a++) {
+      for (int b = 1; b <= n; b++) {
+        for (int c = 1; c <= n; c++) {
+          if ((a + b + c) % 2 == 0) {
+            System.out.println(a + " x " + b + " x " + c + " = " + (a * b * c));
+          }
+        }
+      }
+    }
+  }
+
+  // recursivo
+  public static void tablaSumaFactoresPar1(int n) {
+    tablaSumaFactoresPar1(n, 1, 1, 1);
+  }
+
+  private static void tablaSumaFactoresPar1(int n, int a, int b, int c) {
+    if (a > n)
+      return;
+
+    if ((a + b + c) % 2 == 0) {
+      System.out.println(a + " x " + b + " x " + c + " = " + (a * b * c));
+    }
+
+    if (c < n) {
+      tablaSumaFactoresPar1(n, a, b, c + 1);
+    } else if (b < n) {
+      tablaSumaFactoresPar1(n, a, b + 1, 1);
+    } else {
+      tablaSumaFactoresPar1(n, a + 1, 1, 1);
+    }
+  }
+
+  /**
+   * 2. tablaPrimos(int n)
+   */
+  // iterativo
+  public static void tablaPrimos(int n) {
+    for (int a = 1; a <= n; a++) {
+      if (!esPrimo(a))
+        continue;
+      for (int b = 1; b <= n; b++) {
+        if (!esPrimo(b))
+          continue;
+        for (int c = 1; c <= n; c++) {
+          if (esPrimo(c)) {
+            System.out.println(a + " x " + b + " x " + c + " = " + (a * b * c));
+          }
+        }
+      }
+    }
+  }
+
+  private static boolean esPrimo(int num) {
+    if (num < 2)
+      return false;
+    for (int i = 2; i <= Math.sqrt(num); i++) {
+      if (num % i == 0)
+        return false;
+    }
+    return true;
+  }
+
+  // recursivo
+  public static void tablaPrimos1(int n) {
+    tablaPrimos1(n, 1, 1, 1);
+  }
+
+  private static void tablaPrimos1(int n, int a, int b, int c) {
+    if (a > n)
+      return;
+
+    if (esPrimo(a) && esPrimo(b) && esPrimo(c)) {
+      System.out.println(a + " x " + b + " x " + c + " = " + (a * b * c));
+    }
+
+    if (c < n) {
+      tablaPrimos1(n, a, b, c + 1);
+    } else if (b < n) {
+      tablaPrimos1(n, a, b + 1, 1);
+    } else {
+      tablaPrimos1(n, a + 1, 1, 1);
+    }
+  }
+
+  /**
+   * 3. tablaFactoresConsecutivos(int n)
+   */
+  // iterativo
+  public static void tablaFactoresConsecutivos(int n) {
+    for (int a = 1; a <= n; a++) {
+      for (int b = 1; b <= n; b++) {
+        for (int c = 1; c <= n; c++) {
+          if ((Math.abs(a - b) == 1 && Math.abs(b - c) == 1 && Math.abs(a - c) == 2)) {
+            System.out.println(a + " x " + b + " x " + c + " = " + (a * b * c));
+          }
+        }
+      }
+    }
+  }
+
+  // recursivo
+  public static void tablaFactoresConsecutivos1(int n) {
+    tablaFactoresConsecutivos1(n, 1, 1, 1);
+  }
+
+  private static void tablaFactoresConsecutivos1(int n, int a, int b, int c) {
+    if (a > n)
+      return;
+
+    if (Math.abs(a - b) == 1 && Math.abs(b - c) == 1 && Math.abs(a - c) == 2) {
+      System.out.println(a + " x " + b + " x " + c + " = " + (a * b * c));
+    }
+
+    if (c < n) {
+      tablaFactoresConsecutivos1(n, a, b, c + 1);
+    } else if (b < n) {
+      tablaFactoresConsecutivos1(n, a, b + 1, 1);
+    } else {
+      tablaFactoresConsecutivos1(n, a + 1, 1, 1);
+    }
+  }
+
+  /**
+   * 4. tablaMultiploComun(int n, int m)
+   */
+  // iterativo
+  public static void tablaMultiploComun(int n, int m) {
+    for (int a = 1; a <= n; a++) {
+      if (a % m != 0)
+        continue;
+      for (int b = 1; b <= n; b++) {
+        if (b % m != 0)
+          continue;
+        for (int c = 1; c <= n; c++) {
+          if (c % m == 0) {
+            System.out.println(a + " x " + b + " x " + c + " = " + (a * b * c));
+          }
+        }
+      }
+    }
+  }
+
+  // recursivo
+  public static void tablaMultiploComun1(int n, int m) {
+    tablaMultiploComun1(n, m, 1, 1, 1);
+  }
+
+  private static void tablaMultiploComun1(int n, int m, int a, int b, int c) {
+    if (a > n)
+      return;
+
+    if (a % m == 0 && b % m == 0 && c % m == 0) {
+      System.out.println(a + " x " + b + " x " + c + " = " + (a * b * c));
+    }
+
+    if (c < n) {
+      tablaMultiploComun1(n, m, a, b, c + 1);
+    } else if (b < n) {
+      tablaMultiploComun1(n, m, a, b + 1, 1);
+    } else {
+      tablaMultiploComun1(n, m, a + 1, 1, 1);
+    }
+  }
+
+  /**
+   * 5. tablaFactorMayorIgualQue(int n, int x)
+   */
+  // iterativo
+  public static void tablaFactorMayorIgualQue(int n, int x) {
+    for (int a = 1; a <= n; a++) {
+      for (int b = 1; b <= n; b++) {
+        for (int c = 1; c <= n; c++) {
+          if (a >= x || b >= x || c >= x) {
+            System.out.println(a + " x " + b + " x " + c + " = " + (a * b * c));
+          }
+        }
+      }
+    }
+  }
+
+  // recursivo
+  public static void tablaFactorMayorIgualQue1(int n, int x) {
+    tablaFactorMayorIgualQue1(n, x, 1, 1, 1);
+  }
+
+  private static void tablaFactorMayorIgualQue1(int n, int x, int a, int b, int c) {
+    if (a > n)
+      return;
+
+    if (a >= x || b >= x || c >= x) {
+      System.out.println(a + " x " + b + " x " + c + " = " + (a * b * c));
+    }
+
+    if (c < n) {
+      tablaFactorMayorIgualQue1(n, x, a, b, c + 1);
+    } else if (b < n) {
+      tablaFactorMayorIgualQue1(n, x, a, b + 1, 1);
+    } else {
+      tablaFactorMayorIgualQue1(n, x, a + 1, 1, 1);
+    }
+  }
+
 }
