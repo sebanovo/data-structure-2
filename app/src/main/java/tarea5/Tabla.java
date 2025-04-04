@@ -327,6 +327,174 @@ public class Tabla {
   }
 
   /**
+   * 9. Incluir al menos 5 ejercicios adicionales cualesquiera sobre la tabla de
+   * multiplicar de dos factores.
+   */
+  /**
+   * 1. tablaResultadoPar(int n)
+   */
+  // iterativo
+  public static void tablaResultadoPar(int n) {
+    for (int a = 1; a <= n; a++) {
+      for (int b = 1; b <= n; b++) {
+        if ((a * b) % 2 == 0) {
+          System.out.println(a + " x " + b + " = " + (a * b));
+        }
+      }
+    }
+  }
+
+  // recursivo
+  public static void tablaResultadoPar1(int n) {
+    tablaResultadoPar1(n, 1, 1);
+  }
+
+  private static void tablaResultadoPar1(int n, int a, int b) {
+    if (a > n)
+      return;
+    if (b > n) {
+      tablaResultadoPar1(n, a + 1, 1);
+      return;
+    }
+    if ((a * b) % 2 == 0) {
+      System.out.println(a + " x " + b + " = " + (a * b));
+    }
+    tablaResultadoPar1(n, a, b + 1);
+  }
+
+  /**
+   * 2. tablaSumaFactoresPar(int n)
+   */
+  // iterativo
+  public static void tablaSumaFactoresPar2(int n) {
+    for (int a = 1; a <= n; a++) {
+      for (int b = 1; b <= n; b++) {
+        if ((a + b) % 2 == 0) {
+          System.out.println(a + " x " + b + " = " + (a * b));
+        }
+      }
+    }
+  }
+
+  // recursivo
+  public static void tablaSumaFactoresPar21(int n) {
+    tablaSumaFactoresPar21(n, 1, 1);
+  }
+
+  private static void tablaSumaFactoresPar21(int n, int a, int b) {
+    if (a > n)
+      return;
+    if (b > n) {
+      tablaSumaFactoresPar21(n, a + 1, 1);
+      return;
+    }
+    if ((a + b) % 2 == 0) {
+      System.out.println(a + " x " + b + " = " + (a * b));
+    }
+    tablaSumaFactoresPar21(n, a, b + 1);
+  }
+
+  /*
+   * 3. tablaSoloUnFactorPar(int n)
+   */
+  // iterativo
+  public static void tablaSoloUnFactorPar(int n) {
+    for (int a = 1; a <= n; a++) {
+      for (int b = 1; b <= n; b++) {
+        boolean aPar = a % 2 == 0;
+        boolean bPar = b % 2 == 0;
+        if (aPar ^ bPar) { // solo uno es par
+          System.out.println(a + " x " + b + " = " + (a * b));
+        }
+      }
+    }
+  }
+
+  // recursivo
+  public static void tablaSoloUnFactorPar1(int n) {
+    tablaSoloUnFactorPar1(n, 1, 1);
+  }
+
+  private static void tablaSoloUnFactorPar1(int n, int a, int b) {
+    if (a > n)
+      return;
+    if (b > n) {
+      tablaSoloUnFactorPar1(n, a + 1, 1);
+      return;
+    }
+    boolean aPar = a % 2 == 0;
+    boolean bPar = b % 2 == 0;
+    if (aPar ^ bPar) {
+      System.out.println(a + " x " + b + " = " + (a * b));
+    }
+    tablaSoloUnFactorPar1(n, a, b + 1);
+  }
+
+  /**
+   * 4. tablaUnoEsMultiploDeOtro(int n)
+   */
+  // iterativo
+  public static void tablaUnoEsMultiploDeOtro(int n) {
+    for (int a = 1; a <= n; a++) {
+      for (int b = 1; b <= n; b++) {
+        if (a % b == 0 || b % a == 0) {
+          System.out.println(a + " x " + b + " = " + (a * b));
+        }
+      }
+    }
+  }
+
+  // recursivo
+  public static void tablaUnoEsMultiploDeOtro1(int n) {
+    tablaUnoEsMultiploDeOtro1(n, 1, 1);
+  }
+
+  private static void tablaUnoEsMultiploDeOtro1(int n, int a, int b) {
+    if (a > n)
+      return;
+    if (b > n) {
+      tablaUnoEsMultiploDeOtro1(n, a + 1, 1);
+      return;
+    }
+    if (a % b == 0 || b % a == 0) {
+      System.out.println(a + " x " + b + " = " + (a * b));
+    }
+    tablaUnoEsMultiploDeOtro1(n, a, b + 1);
+  }
+
+  /**
+   * 5. tablaSumaIgualProducto(int n)
+   */
+  // iterativo
+  public static void tablaSumaIgualProducto(int n) {
+    for (int a = 1; a <= n; a++) {
+      for (int b = 1; b <= n; b++) {
+        if (a + b == a * b) {
+          System.out.println(a + " x " + b + " = " + (a * b));
+        }
+      }
+    }
+  }
+
+  // recursivo
+  public static void tablaSumaIgualProducto1(int n) {
+    tablaSumaIgualProducto1(n, 1, 1);
+  }
+
+  private static void tablaSumaIgualProducto1(int n, int a, int b) {
+    if (a > n)
+      return;
+    if (b > n) {
+      tablaSumaIgualProducto1(n, a + 1, 1);
+      return;
+    }
+    if (a + b == a * b) {
+      System.out.println(a + " x " + b + " = " + (a * b));
+    }
+    tablaSumaIgualProducto1(n, a, b + 1);
+  }
+
+  /**
    * II. TABLA DE MULTIPLICAR CON TRES FACTORES A x B x C = D (tres ciclos
    * anidados)
    */
