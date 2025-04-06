@@ -7,11 +7,7 @@ package com.app;
 import tarea5.Tabla;
 
 public class Main {
-    public static void nose(String s) {
-        s = "Hola mundo";
-    }
-
     public static void main(String[] args) {
-        Tabla.tabla(3);
+        Tabla.tablaParImpar1(3);
     }
 }
