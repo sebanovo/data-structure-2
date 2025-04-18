@@ -294,7 +294,7 @@ public class Lista {
    */
   public void insertarLugarDesc(int x) {
     int k = this.cantElem - 1;
-    while (k >= 0 && x < this.elem[k]) {
+    while (k >= 0 && x > this.elem[k]) {
       this.elem[k + 1] = this.elem[k];
       k--;
     }
