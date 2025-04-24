@@ -395,6 +395,18 @@ public class Lista {
    * par, impar, par, . . . .
    */
   public boolean alternos() {
+    if (prim == null)
+      return false;
+    Nodo p = prim;
+    boolean esPar = p.elem % 2 == 0;
+    p = p.prox;
+    while (p != null) {
+      if ((p.elem % 2 == 0) == esPar) {
+        return false;
+      }
+      esPar = !esPar;
+      p = p.prox;
+    }
     return true;
   }
 
