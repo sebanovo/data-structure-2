@@ -1,6 +1,5 @@
 import math
 
-
 class Lista:
     def __init__(self):
         self.MAX = 1000
