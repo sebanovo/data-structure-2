@@ -31,8 +31,7 @@ public class Lista {
 
   // recursivo
   public String toString1() {
-    String s = "[";
-    return s + toStringR(this.prim) + "]";
+    return "[" + toStringR(this.prim) + "]";
   }
 
   private String toStringR(Nodo p) {
