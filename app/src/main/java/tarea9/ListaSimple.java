@@ -28,15 +28,6 @@ public class ListaSimple {
     return this.cantElem == 0;
   }
 
-  public void insertarUlt(int x) {
-    if (vacia()) {
-      prim = ult = new NodoSimple(x, null);
-    } else {
-      ult = ult.prox = new NodoSimple(x, null);
-    }
-    cantElem++;
-  }
-
   // 1. L1.eliminarPrim() : Método que elimina el elemento de la primer posición.
   // iterativo y recursivo
   public void eliminarPrim() {
