@@ -14,13 +14,13 @@ public class Main {
     public static void main(String[] args) {
         // ListaDoble l1 = new ListaDoble();
         ListaSimple l1 = new ListaSimple();
-        l1.insertarUlt(5);
-        l1.insertarUlt(1);
-        l1.insertarUlt(4);
-        l1.insertarUlt(3);
-        l1.insertarUlt(2);
-        l1.insertarUlt(2);
-        l1.insertarUlt(3);
+        // l1.insertarUlt(5);
+        // l1.insertarUlt(1);
+        // l1.insertarUlt(4);
+        // l1.insertarUlt(3);
+        // l1.insertarUlt(2);
+        // l1.insertarUlt(2);
+        // l1.insertarUlt(3);
 
         System.out.println(l1);
         // l1.eliminarUnicos1();
