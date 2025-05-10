@@ -1,19 +1,19 @@
 package modelos.examen2;
 
 public class ListaDoble {
-  public NodoDoble prim;
+  public Nodo prim;
   public int cantElem;
-  public NodoDoble ult;
+  public Nodo ult;
 
   public ListaDoble() {
     prim = ult = null;
     cantElem = 0;
   }
 
-  @Override
+  // iterativo
   public String toString() {
     String s = "[";
-    NodoDoble p = prim;
+    Nodo p = prim;
     while (p != null) {
       s = s + p.elem;
       if (p.prox != null) {
@@ -29,7 +29,7 @@ public class ListaDoble {
     return "[" + toStringR(this.prim) + "]";
   }
 
-  private String toStringR(NodoDoble p) {
+  private String toStringR(Nodo p) {
     String s = "";
     if (p == null) {
       return s;
@@ -46,19 +46,54 @@ public class ListaDoble {
     return this.cantElem == 0;
   }
 
-  public void insertarUlt(int x) {
+  // metodos de insertar
+  public void insertarPrim(int x) {
     if (vacia()) {
-      prim = ult = new NodoDoble(null, x, null);
+      prim = ult = new Nodo(null, x, null);
     } else {
-      ult = ult.prox = new NodoDoble(ult, x, null);
+      prim = prim.ant = new Nodo(null, x, prim);
     }
     this.cantElem++;
   }
 
+  public void insertarUlt(int x) {
+    if (vacia()) {
+      prim = ult = new Nodo(null, x, null);
+    } else {
+      ult = ult.prox = new Nodo(ult, x, null);
+    }
+    this.cantElem++;
+  }
+
+  private void insertarNodo(Nodo ap, Nodo p, int x) {
+    if (ap == null) {
+      insertarPrim(x);
+    } else if (p == null) {
+      insertarUlt(x);
+    } else {
+      ap.prox = p.ant = new Nodo(ap, x, p);
+      cantElem++;
+    }
+  }
+
+  public void insertarIesimo(int x, int i) {
+    int k = 0;
+    Nodo p = prim;
+    Nodo ap = null;
+    while (k < i && p != null) {
+      k = k + 1;
+      ap = p;
+      p = p.prox;
+    }
+    insertarNodo(ap, p, x);
+  }
+
+  // 5 metodos de consulta
+
   // 1
   // iterativo
   public int frecuencia(int x) {
-    NodoDoble p = prim;
+    Nodo p = prim;
     int frecuencia = 0;
     while (p != null) {
       if (p.elem == x) {
@@ -74,7 +109,7 @@ public class ListaDoble {
     return frecuenciaR(prim, x);
   }
 
-  private int frecuenciaR(NodoDoble p, int x) {
+  private int frecuenciaR(Nodo p, int x) {
     if (p == null) {
       return 0;
     } else {
@@ -89,7 +124,7 @@ public class ListaDoble {
   // 2
   // iterativo
   public boolean iguales() {
-    NodoDoble p = prim;
+    Nodo p = prim;
     while (p != null) {
       if (this.frecuencia(p.elem) == this.cantElem)
         return true;
@@ -103,7 +138,7 @@ public class ListaDoble {
     return igualesR(prim);
   }
 
-  private boolean igualesR(NodoDoble p) {
+  private boolean igualesR(Nodo p) {
     if (p == null) {
       return true;
     } else {
@@ -116,7 +151,7 @@ public class ListaDoble {
   // 3
   // iterativo
   public boolean diferentes() {
-    NodoDoble p = prim;
+    Nodo p = prim;
     while (p != null) {
       if (this.frecuencia(p.elem) > 1)
         return false;
@@ -130,7 +165,7 @@ public class ListaDoble {
     return diferentesR(prim);
   }
 
-  private boolean diferentesR(NodoDoble p) {
+  private boolean diferentesR(Nodo p) {
     if (p == null) {
       return true;
     } else {
@@ -143,7 +178,7 @@ public class ListaDoble {
   // 4
   // iterativo
   public int mayorElem() {
-    NodoDoble p = prim;
+    Nodo p = prim;
     int mayor = p.elem;
     while (p != null) {
       if (mayor < p.elem) {
@@ -159,7 +194,7 @@ public class ListaDoble {
     return mayorElemR(prim, prim.elem);
   }
 
-  private int mayorElemR(NodoDoble p, int mayor) {
+  private int mayorElemR(Nodo p, int mayor) {
     if (p == null) {
       return mayor;
     } else {
@@ -172,30 +207,230 @@ public class ListaDoble {
 
   // 5
   // iterativo
-  public boolean pares() {
-    NodoDoble p = prim;
+  public int indexOf(int x) {
+    int i = 0;
+    Nodo p = prim;
     while (p != null) {
-      if (p.elem % 2 != 0)
-        return false;
-
+      if (p.elem == x) {
+        return i;
+      }
+      i++;
       p = p.prox;
     }
-    return true;
+    return -1;
   }
 
   // recursivo
-  public boolean pares1() {
-    return paresR(prim);
+  public int indexOf1(int x) {
+    return indexOfR(prim, 0, x);
   }
 
-  private boolean paresR(NodoDoble p) {
+  public int indexOfR(Nodo p, int i, int x) {
     if (p == null) {
-      return true;
+      return -1;
     } else {
-      if (p.elem % 2 != 0) {
-        return false;
+      if (p.elem == x) {
+        return i;
       }
-      return paresR(p.prox);
+      return indexOfR(p.prox, i + 1, x);
     }
+  }
+
+  // metodos de eliminacion
+  public void eliminarPrim() {
+    if (vacia()) {
+      return;
+    }
+    if (prim == ult) {
+      prim = ult = null;
+    } else {
+      prim.prox.ant = null;
+      prim = prim.prox;
+    }
+    cantElem--;
+  }
+
+  public void eliminarUlt() {
+    if (vacia()) {
+      return;
+    }
+    if (prim == ult) {
+      prim = ult = null;
+    } else {
+      ult.ant.prox = null;
+      ult = ult.ant;
+    }
+    cantElem--;
+  }
+
+  public Nodo eliminarNodo(Nodo ap, Nodo p) {
+    if (ap == null) {
+      eliminarPrim();
+      return prim;
+    }
+    if (p.prox == null) {
+      eliminarUlt();
+      return null;
+    } else {
+      ap.prox = p.prox;
+      p.prox.ant = ap;
+      cantElem--;
+      return ap.prox;
+    }
+  }
+
+  public void eliminarIesimo(int i) {
+    int k = 0;
+    Nodo p = prim;
+    Nodo ap = null;
+    while (k < i) {
+      k = k + 1;
+      ap = p;
+      p = p.prox;
+    }
+    eliminarNodo(ap, p);
+  }
+
+  // 5 metodos de eliminacion
+
+  // 1
+  // iterativo
+  public void eliminarPrim(int n) {
+    for (int i = 0; i < n; i++) {
+      eliminarPrim();
+    }
+  }
+
+  // recursivo
+  public void eliminarPrim1(int n) {
+    eliminarPrimR(0, n);
+  }
+
+  public void eliminarPrimR(int i, int n) {
+    if (i >= n) {
+      return;
+    }
+    eliminarPrim();
+    eliminarPrimR(i + 1, n);
+  }
+
+  // 2
+  // iterativo
+  public void eliminarUlt(int n) {
+    for (int i = 0; i < n; i++) {
+      eliminarUlt();
+    }
+  }
+
+  public void eliminarUlt1(int n) {
+    eliminarUltR(0, n);
+  }
+
+  // recursivo
+  public void eliminarUltR(int i, int n) {
+    if (i >= n) {
+      return;
+    }
+    eliminarUlt();
+    eliminarUltR(i + 1, n);
+  }
+
+  // 3
+  // iterativo
+  public void eliminarTodo(int x) {
+    Nodo p = prim;
+    Nodo ap = null;
+    while (p != null) {
+      if (p.elem == x) {
+        p = eliminarNodo(ap, p);
+      } else {
+        ap = p;
+        p = p.prox;
+      }
+    }
+  }
+
+  // recursivo
+  public void eliminarTodo1(int x) {
+    eliminarTodoR(null, prim, x);
+  }
+
+  public void eliminarTodoR(Nodo ap, Nodo p, int x) {
+    if (p == null) {
+      return;
+    }
+
+    if (p.elem == x) {
+      p = eliminarNodo(ap, p);
+    } else {
+      ap = p;
+      p = p.prox;
+    }
+    eliminarTodoR(ap, p, x);
+  }
+
+  // 4
+  // iterativo
+  public void eliminarUnicos() {
+    Nodo p = prim;
+    Nodo ap = null;
+    while (p != null) {
+      if (frecuencia(p.elem) == 1) {
+        p = eliminarNodo(ap, p);
+      } else {
+        ap = p;
+        p = p.prox;
+      }
+    }
+  }
+
+  // recursivo
+  public void eliminarUnicos1() {
+    eliminarUnicosR(null, prim);
+  }
+
+  public void eliminarUnicosR(Nodo ap, Nodo p) {
+    if (p == null) {
+      return;
+    }
+    if (frecuencia1(p.elem) == 1) {
+      p = eliminarNodo(ap, ap);
+    } else {
+      ap = p;
+      p = p.prox;
+    }
+    eliminarUnicosR(ap, p);
+  }
+
+  // 5
+  // iterativo
+  public void eliminarDup() {
+    Nodo p = prim;
+    while (p != null) {
+      if (frecuencia(p.elem) > 1) {
+        eliminarTodo(p.elem);
+        p = prim;
+      } else {
+        p = p.prox;
+      }
+    }
+  }
+
+  // recursivo
+  public void eliminarDup1() {
+    eliminarDupR(prim);
+  }
+
+  public void eliminarDupR(Nodo p) {
+    if (p == null) {
+      return;
+    }
+    if (frecuencia1(p.elem) > 1) {
+      eliminarTodo1(p.elem);
+      p = prim;
+    } else {
+      p = p.prox;
+    }
+    eliminarDupR(p);
   }
 }
