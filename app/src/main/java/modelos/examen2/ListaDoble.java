@@ -9,7 +9,7 @@ public class ListaDoble {
     prim = ult = null;
     cantElem = 0;
   }
-
+  
   // iterativo
   public String toString() {
     String s = "[";
@@ -23,7 +23,7 @@ public class ListaDoble {
     }
     return s + "]";
   }
-
+  
   // recursivo
   public String toString1() {
     return "[" + toStringR(this.prim) + "]";
@@ -45,7 +45,7 @@ public class ListaDoble {
   public boolean vacia() {
     return this.cantElem == 0;
   }
-
+  
   // metodos de insertar
   public void insertarPrim(int x) {
     if (vacia()) {
@@ -64,7 +64,7 @@ public class ListaDoble {
     }
     this.cantElem++;
   }
-
+  
   private void insertarNodo(Nodo ap, Nodo p, int x) {
     if (ap == null) {
       insertarPrim(x);
@@ -75,7 +75,7 @@ public class ListaDoble {
       cantElem++;
     }
   }
-
+  
   public void insertarIesimo(int x, int i) {
     int k = 0;
     Nodo p = prim;
@@ -103,7 +103,7 @@ public class ListaDoble {
     }
     return frecuencia;
   }
-
+  
   // recursivo
   public int frecuencia1(int x) {
     return frecuenciaR(prim, x);
@@ -126,13 +126,13 @@ public class ListaDoble {
   public boolean iguales() {
     Nodo p = prim;
     while (p != null) {
-      if (this.frecuencia(p.elem) == this.cantElem)
-        return true;
+      if (frecuencia(p.elem) != this.cantElem)
+        return false;
       p = p.prox;
     }
-    return false;
+    return true;
   }
-
+  
   // recursivo
   public boolean iguales1() {
     return igualesR(prim);
@@ -142,8 +142,8 @@ public class ListaDoble {
     if (p == null) {
       return true;
     } else {
-      if (this.frecuencia(p.elem) == this.cantElem)
-        return true;
+      if (frecuencia1(p.elem) != this.cantElem)
+        return false;
       return igualesR(p.prox);
     }
   }
@@ -153,7 +153,7 @@ public class ListaDoble {
   public boolean diferentes() {
     Nodo p = prim;
     while (p != null) {
-      if (this.frecuencia(p.elem) > 1)
+      if (frecuencia1(p.elem) > 1)
         return false;
       p = p.prox;
     }
@@ -169,7 +169,7 @@ public class ListaDoble {
     if (p == null) {
       return true;
     } else {
-      if (this.frecuencia(p.elem) > 1)
+      if (frecuencia1(p.elem) > 1)
         return false;
       return diferentesR(p.prox);
     }

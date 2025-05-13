@@ -126,11 +126,11 @@ public class Lista {
   public boolean iguales() {
     Nodo p = prim;
     while (p != null) {
-      if (this.frecuencia(p.elem) == this.cantElem)
-        return true;
+      if (frecuencia(p.elem) != this.cantElem)
+        return false;
       p = p.prox;
     }
-    return false;
+    return true;
   }
 
   // recursivo
@@ -142,8 +142,8 @@ public class Lista {
     if (p == null) {
       return true;
     } else {
-      if (this.frecuencia(p.elem) == this.cantElem)
-        return true;
+      if (frecuencia1(p.elem) != this.cantElem)
+        return false;
       return igualesR(p.prox);
     }
   }
@@ -155,7 +155,7 @@ public class Lista {
   public boolean diferentes() {
     Nodo p = prim;
     while (p != null) {
-      if (this.frecuencia(p.elem) > 1)
+      if (frecuencia(p.elem) > 1)
         return false;
       p = p.prox;
     }
@@ -171,7 +171,7 @@ public class Lista {
     if (p == null) {
       return true;
     } else {
-      if (this.frecuencia(p.elem) > 1)
+      if (frecuencia1(p.elem) > 1)
         return false;
       return diferentesR(p.prox);
     }
