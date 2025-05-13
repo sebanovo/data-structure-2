@@ -235,12 +235,12 @@ public class ListaDoble {
   public boolean iguales() {
     Nodo p = prim;
     while (p != null) {
-      if (this.frecuencia(p.elem) == this.cantElem) {
-        return true;
+      if (frecuencia(p.elem) != this.cantElem) {
+        return false;
       }
       p = p.prox;
     }
-    return false;
+    return true;
   }
 
   // recursivo
@@ -250,10 +250,10 @@ public class ListaDoble {
 
   private boolean igualesR(Nodo p) {
     if (p == null) {
-      return false;
+      return true;
     } else {
-      if (this.frecuencia(p.elem) == this.cantElem) {
-        return true;
+      if (frecuencia(p.elem) != this.cantElem) {
+        return false;
       }
       return igualesR(p.prox);
     }
@@ -267,7 +267,7 @@ public class ListaDoble {
   public boolean diferentes() {
     Nodo p = prim;
     while (p != null) {
-      if (this.frecuencia(p.elem) > 1) {
+      if (frecuencia(p.elem) > 1) {
         return false;
       }
       p = p.prox;
@@ -284,7 +284,7 @@ public class ListaDoble {
     if (p == null) {
       return true;
     } else {
-      if (this.frecuencia(p.elem) > 1) {
+      if (frecuencia(p.elem) > 1) {
         return false;
       }
       return diferentesR(p.prox);
