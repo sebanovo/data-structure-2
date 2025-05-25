@@ -9,7 +9,7 @@ public class ListaDoble {
     prim = ult = null;
     cantElem = 0;
   }
-  
+
   // iterativo
   public String toString() {
     String s = "[";
@@ -23,7 +23,7 @@ public class ListaDoble {
     }
     return s + "]";
   }
-  
+
   // recursivo
   public String toString1() {
     return "[" + toStringR(this.prim) + "]";
@@ -45,7 +45,7 @@ public class ListaDoble {
   public boolean vacia() {
     return this.cantElem == 0;
   }
-  
+
   // metodos de insertar
   public void insertarPrim(int x) {
     if (vacia()) {
@@ -64,7 +64,7 @@ public class ListaDoble {
     }
     this.cantElem++;
   }
-  
+
   private void insertarNodo(Nodo ap, Nodo p, int x) {
     if (ap == null) {
       insertarPrim(x);
@@ -75,7 +75,7 @@ public class ListaDoble {
       cantElem++;
     }
   }
-  
+
   public void insertarIesimo(int x, int i) {
     int k = 0;
     Nodo p = prim;
@@ -103,7 +103,7 @@ public class ListaDoble {
     }
     return frecuencia;
   }
-  
+
   // recursivo
   public int frecuencia1(int x) {
     return frecuenciaR(prim, x);
@@ -132,7 +132,7 @@ public class ListaDoble {
     }
     return true;
   }
-  
+
   // recursivo
   public boolean iguales1() {
     return igualesR(prim);
@@ -205,34 +205,33 @@ public class ListaDoble {
     }
   }
 
-  // 5
+  // 4
   // iterativo
-  public int indexOf(int x) {
-    int i = 0;
+  public int menorElem() {
     Nodo p = prim;
+    int mayor = p.elem;
     while (p != null) {
-      if (p.elem == x) {
-        return i;
+      if (mayor < p.elem) {
+        mayor = p.elem;
       }
-      i++;
       p = p.prox;
     }
-    return -1;
+    return mayor;
   }
 
   // recursivo
-  public int indexOf1(int x) {
-    return indexOfR(prim, 0, x);
+  public int menorElem1() {
+    return menorElemR(prim, prim.elem);
   }
 
-  public int indexOfR(Nodo p, int i, int x) {
+  private int menorElemR(Nodo p, int mayor) {
     if (p == null) {
-      return -1;
+      return mayor;
     } else {
-      if (p.elem == x) {
-        return i;
+      if (mayor < p.elem) {
+        mayor = p.elem;
       }
-      return indexOfR(p.prox, i + 1, x);
+      return menorElemR(p.prox, mayor);
     }
   }
 
