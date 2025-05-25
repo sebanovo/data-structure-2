@@ -1,4 +1,4 @@
-package tarea5;
+package tema1.tarea5;
 
 public class Tabla {
   /**

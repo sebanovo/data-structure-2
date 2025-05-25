@@ -1,4 +1,4 @@
-package tarea8;
+package tema1.tarea8;
 
 public class Nodo {
   public Nodo ant;

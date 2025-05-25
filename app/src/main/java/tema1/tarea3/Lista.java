@@ -1,4 +1,4 @@
-package tarea3;
+package tema1.tarea3;
 
 import java.util.*;
 
@@ -24,7 +24,7 @@ public class Lista {
   }
 
   /**
-   * EJERCICIOS DE TAREA-1
+   * EJERCICIOS DE tema1.tarea-1
    */
 
   /**
@@ -271,7 +271,7 @@ public class Lista {
   }
 
   /**
-   * EJERCICIOS DE TAREA-2
+   * EJERCICIOS DE tema1.tarea-2
    */
 
   /**

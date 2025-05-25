@@ -1,4 +1,4 @@
-package tarea9;
+package tema1.tarea9;
 
 public class NodoSimple {
   public int elem;

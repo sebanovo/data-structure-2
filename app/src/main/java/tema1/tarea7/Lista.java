@@ -1,4 +1,4 @@
-package tarea7;
+package tema1.tarea7;
 
 public class Lista {
   public Nodo prim;

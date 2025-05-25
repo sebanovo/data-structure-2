@@ -1,4 +1,4 @@
-package tarea2;
+package tema1.tarea2;
 
 public class Lista {
   public int[] elem;

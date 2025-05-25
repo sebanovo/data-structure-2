@@ -199,7 +199,7 @@ class Lista:
             self.eliminarIesimo1(i)
 
     """
-    EJERCICIOS DE TAREA-2
+    EJERCICIOS DE tema1.tarea-2
     """
 
     def insertarLugarAsc(self, x):

@@ -1,4 +1,4 @@
-package tarea4;
+package tema1.tarea4;
 
 // Lista con algoritmos recursivos
 public class Lista {

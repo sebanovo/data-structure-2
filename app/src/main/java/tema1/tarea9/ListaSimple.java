@@ -1,11 +1,11 @@
-package tarea9;
+package tema1.tarea9;
 
-public class ListaDoble {
-  public NodoDoble prim;
+public class ListaSimple {
+  public NodoSimple prim;
   public int cantElem;
-  public NodoDoble ult;
+  public NodoSimple ult;
 
-  public ListaDoble() {
+  public ListaSimple() {
     prim = ult = null;
     cantElem = 0;
   }
@@ -13,7 +13,7 @@ public class ListaDoble {
   @Override
   public String toString() {
     String s = "[";
-    NodoDoble p = prim;
+    NodoSimple p = prim;
     while (p != null) {
       s = s + p.elem;
       if (p.prox != null) {
@@ -37,14 +37,13 @@ public class ListaDoble {
     if (prim == ult) {
       prim = ult = null;
     } else {
-      prim.prox.ant = null;
       prim = prim.prox;
     }
     cantElem--;
   }
 
   // 2. L1.eliminarUlt() : Método que elimina el último elemento de la lista L1.
-  // iterativo y recursivo
+  // iterativo
   public void eliminarUlt() {
     if (vacia()) {
       return;
@@ -52,17 +51,55 @@ public class ListaDoble {
     if (prim == ult) {
       prim = ult = null;
     } else {
-      ult.ant.prox = null;
-      ult = ult.ant;
+      NodoSimple ant = ant(ult);
+      ant.prox = null;
+      ult = ant;
     }
     cantElem--;
+  }
+
+  public NodoSimple ant(NodoSimple p_objetivo) {
+    NodoSimple p = prim;
+    NodoSimple ap = null;
+    while (p != p_objetivo) {
+      ap = p;
+      p = p.prox;
+    }
+    return ap;
+  }
+
+  // recursivo
+  public void eliminarUlt1() {
+    if (vacia()) {
+      return;
+    }
+    if (prim == ult) {
+      prim = ult = null;
+    } else {
+      NodoSimple ant = ant1(ult);
+      ant.prox = null;
+      ult = ant;
+    }
+    cantElem--;
+  }
+
+  public NodoSimple ant1(NodoSimple p_actual) {
+    return antR(null, prim, p_actual);
+  }
+
+  public NodoSimple antR(NodoSimple ap, NodoSimple p, NodoSimple p_objetivo) {
+    if (p == p_objetivo) {
+      return ap;
+    } else {
+      return antR(p, p.prox, p_objetivo);
+    }
   }
 
   // 3. L1.eliminarNodo(ap, p) : Método que elimina el nodo p, y devuelve el nodo
   // siguiente a ap. El nodo p, puede estar al principio, final o al centro de la
   // lista.
   // iterativo y recursivo
-  public NodoDoble eliminarNodoDoble(NodoDoble ap, NodoDoble p) {
+  public NodoSimple eliminarNodoSimple(NodoSimple ap, NodoSimple p) {
     if (ap == null) {
       eliminarPrim();
       return prim;
@@ -72,7 +109,6 @@ public class ListaDoble {
       return null;
     } else {
       ap.prox = p.prox;
-      p.prox.ant = ap;
       cantElem--;
       return ap.prox;
     }
@@ -82,11 +118,11 @@ public class ListaDoble {
   // lista L1.
   // iterativo
   public void eliminarTodo(int x) {
-    NodoDoble p = prim;
-    NodoDoble ap = null;
+    NodoSimple p = prim;
+    NodoSimple ap = null;
     while (p != null) {
       if (p.elem == x) {
-        p = eliminarNodoDoble(ap, p);
+        p = eliminarNodoSimple(ap, p);
       } else {
         ap = p;
         p = p.prox;
@@ -99,13 +135,13 @@ public class ListaDoble {
     eliminarTodoR(null, prim, x);
   }
 
-  public void eliminarTodoR(NodoDoble ap, NodoDoble p, int x) {
+  public void eliminarTodoR(NodoSimple ap, NodoSimple p, int x) {
     if (p == null) {
       return;
     }
 
     if (p.elem == x) {
-      p = eliminarNodoDoble(ap, p);
+      p = eliminarNodoSimple(ap, p);
     } else {
       ap = p;
       p = p.prox;
@@ -144,16 +180,16 @@ public class ListaDoble {
     }
   }
 
+  // recursivo
   public void eliminarUlt1(int n) {
     eliminarUltR(0, n);
   }
 
-  // recursivo
   public void eliminarUltR(int i, int n) {
     if (i >= n) {
       return;
     }
-    eliminarUlt();
+    eliminarUlt1();
     eliminarUltR(i + 1, n);
   }
 
@@ -162,14 +198,14 @@ public class ListaDoble {
   // iterativo
   public void eliminarIesimo(int i) {
     int k = 0;
-    NodoDoble p = prim;
-    NodoDoble ap = null;
+    NodoSimple p = prim;
+    NodoSimple ap = null;
     while (k < i) {
       k = k + 1;
       ap = p;
       p = p.prox;
     }
-    eliminarNodoDoble(ap, p);
+    eliminarNodoSimple(ap, p);
   }
 
   // recursivo
@@ -177,9 +213,9 @@ public class ListaDoble {
     eliminarIesimoR(0, i, null, prim);
   }
 
-  public void eliminarIesimoR(int k, int i, NodoDoble ap, NodoDoble p) {
+  public void eliminarIesimoR(int k, int i, NodoSimple ap, NodoSimple p) {
     if (k >= i) {
-      eliminarNodoDoble(ap, p);
+      eliminarNodoSimple(ap, p);
     } else {
       eliminarIesimoR(k + 1, i, p, p.prox);
     }
@@ -189,11 +225,11 @@ public class ListaDoble {
   // en la Lista L1.
   // iterativo
   public void eliminarUnicos() {
-    NodoDoble p = prim;
-    NodoDoble ap = null;
+    NodoSimple p = prim;
+    NodoSimple ap = null;
     while (p != null) {
       if (frecuencia(p.elem) == 1) {
-        p = eliminarNodoDoble(ap, p);
+        p = eliminarNodoSimple(ap, p);
       } else {
         ap = p;
         p = p.prox;
@@ -203,7 +239,7 @@ public class ListaDoble {
 
   public int frecuencia(int x) {
     int frecuencia = 0;
-    NodoDoble p = prim;
+    NodoSimple p = prim;
     while (p != null) {
       if (p.elem == x) {
         frecuencia = frecuencia + 1;
@@ -218,12 +254,12 @@ public class ListaDoble {
     eliminarUnicosR(null, prim);
   }
 
-  public void eliminarUnicosR(NodoDoble ap, NodoDoble p) {
+  public void eliminarUnicosR(NodoSimple ap, NodoSimple p) {
     if (p == null) {
       return;
     }
     if (frecuencia1(p.elem) == 1) {
-      p = eliminarNodoDoble(ap, ap);
+      p = eliminarNodoSimple(ap, ap);
     } else {
       ap = p;
       p = p.prox;
@@ -235,7 +271,7 @@ public class ListaDoble {
     return frecuencia1(prim, x);
   }
 
-  public int frecuencia1(NodoDoble p, int x) {
+  public int frecuencia1(NodoSimple p, int x) {
     if (p == null) {
       return 0;
     } else {
@@ -251,7 +287,7 @@ public class ListaDoble {
   // Lista L1.
   // iterativo
   public void eliminarDup() {
-    NodoDoble p = prim;
+    NodoSimple p = prim;
     while (p != null) {
       if (frecuencia(p.elem) > 1) {
         eliminarTodo(p.elem);
@@ -268,7 +304,7 @@ public class ListaDoble {
     eliminarDupR(prim);
   }
 
-  public void eliminarDupR(NodoDoble p) {
+  public void eliminarDupR(NodoSimple p) {
     if (p == null) {
       return;
     }
@@ -284,8 +320,8 @@ public class ListaDoble {
   // 10- L1.eliminar(L2) : Método que elimina los elementos de la Lista L1, que se
   // encuentran en L2.
   // iterativo
-  public void eliminar(ListaDoble L2) {
-    NodoDoble p = L2.prim;
+  public void eliminar(ListaSimple L2) {
+    NodoSimple p = L2.prim;
     while (p != null) {
       eliminarTodo(p.elem);
       p = p.prox;
@@ -293,11 +329,11 @@ public class ListaDoble {
   }
 
   // recursivo
-  public void eliminar1(ListaDoble L2) {
+  public void eliminar1(ListaSimple L2) {
     eliminarR(L2.prim);
   }
 
-  public void eliminarR(NodoDoble p) {
+  public void eliminarR(NodoSimple p) {
     if (p == null) {
       return;
     }

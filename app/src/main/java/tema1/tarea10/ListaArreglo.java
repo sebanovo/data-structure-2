@@ -1,4 +1,4 @@
-package tarea10;
+package tema1.tarea10;
 
 public class ListaArreglo {
   ListaDoble elem[];
