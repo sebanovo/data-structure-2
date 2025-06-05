@@ -43,7 +43,7 @@ public class ArbolEntero {
     System.out.print('\n');
   }
 
-  public void mostrarMenorMayor(NodoEntero p) {
+  private void mostrarMenorMayor(NodoEntero p) {
     if (p == null) {
       return;
     }
@@ -57,7 +57,7 @@ public class ArbolEntero {
     System.out.print('\n');
   }
 
-  public void mostrarMayorMenor(NodoEntero p) {
+  private void mostrarMayorMenor(NodoEntero p) {
     if (p == null) {
       return;
     }

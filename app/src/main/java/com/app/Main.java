@@ -27,14 +27,7 @@ public class Main {
         // A1.mostrarMenorMayor();
         // A1.mostrarMayorMenor();
         ArbolCadena A2 = new ArbolCadena();
-        System.out.println(new File("documento.txt").getAbsolutePath());
-        System.out.println("\n");
-        BufferedReader reader = new BufferedReader(new FileReader("texto.txt"));
-        String linea;
-        while ((linea = reader.readLine()) != null) {
-            A2.leerCadena(linea.toLowerCase());
-        }
-        reader.close();
+        A2.cargarArchivo("texto.txt");
 
         A2.mostrarMenorMayor();
         A2.mostrarMayorMenor();

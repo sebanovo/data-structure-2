@@ -1,5 +1,8 @@
 package tema2.tarea3;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
 
 public class ArbolCadena {
@@ -14,14 +17,18 @@ public class ArbolCadena {
   }
 
   /*
-   * Ejercicio-1.
+   * Ejercicio-2.
    * 
-   * Dado una secuencia de elementos, se desea encontrar la frecuencia de cada
-   * elementos.
-   * - Mostrar los elementos de menor a mayor con sus respectivas frecuencias de
-   * ocurrencias.
-   * - Mostrar los elementos de mayor a menor con sus respectivas frecuencias de
-   * ocurrencias.
+   * Implementar el Ejercicios-1, con elementos Strings. Es decir; los elementos
+   * ya no son enteros, sino Cadenas de Caracteres, utilizar s1.compareTo(s2),
+   * s1.equals(s2), para comparar dos cadenas de caracteres.
+   * 
+   * Para ejecutar con n-palabras, para n-grande. Leer los datos de un Archivo de
+   * Texto y utilizar StringTokenizer() y utilizar todos los delimitadores
+   * posibles de palabras, para encontrar cada palabra del Archivo de Texto, para
+   * facilitar las consultas transformar todas las palabras del Texto a
+   * minúsculas. Utilizar un archivo de texto cualquiera de al menos 5 páginas de
+   * un documento.
    */
 
   private NodoCadena insertar(String x, NodoCadena p) {
@@ -43,7 +50,7 @@ public class ArbolCadena {
     System.out.print('\n');
   }
 
-  public void mostrarMenorMayor(NodoCadena p) {
+  private void mostrarMenorMayor(NodoCadena p) {
     if (p == null) {
       return;
     }
@@ -57,7 +64,7 @@ public class ArbolCadena {
     System.out.print('\n');
   }
 
-  public void mostrarMayorMenor(NodoCadena p) {
+  private void mostrarMayorMenor(NodoCadena p) {
     if (p == null) {
       return;
     }
@@ -67,10 +74,20 @@ public class ArbolCadena {
   }
 
   public void leerCadena(String cadena) {
-    StringTokenizer tokenizer = new StringTokenizer(cadena);
+    String delimitadores = " \t\n\r\f,.:;?!¡¿\"'()[]{}<>/\\|-_=+*&^%$#@`~1234567890";
+    StringTokenizer tokenizer = new StringTokenizer(cadena, delimitadores);
     while (tokenizer.hasMoreTokens()) {
       String palabra = tokenizer.nextToken();
       insertar(palabra);
     }
+  }
+
+  public void cargarArchivo(String rutaArchivo) throws IOException {
+    BufferedReader reader = new BufferedReader(new FileReader(rutaArchivo));
+    String linea;
+    while ((linea = reader.readLine()) != null) {
+      this.leerCadena(linea.toLowerCase());
+    }
+    reader.close();
   }
 }
