@@ -26,7 +26,7 @@ public class Main {
         ArbolCadena A2 = new ArbolCadena();
         A2.cargarArchivo("texto.txt");
 
-        A2.mostrarMenorMayor();
-        // A2.mostrarMayorMenor();
+        // A2.mostrarMenorMayor();
+        A2.mostrarMayorMenor();
     }
 }
