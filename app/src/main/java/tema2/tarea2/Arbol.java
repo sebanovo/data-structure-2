@@ -36,10 +36,8 @@ public class Arbol {
     }
     if (x < p.elem) {
       p.izq = insertar(x, p.izq);
-    } else if (x > p.elem) {
-      p.der = insertar(x, p.der);
     } else {
-      p.elem = x;
+      p.der = insertar(x, p.der);
     }
     return p;
   }

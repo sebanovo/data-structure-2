@@ -1,5 +1,10 @@
 package com.app;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
 // import tema1.tarea1.Lista;
 // import tema1.tarea2.Lista;
 // import tema1.tarea3.Lista;
@@ -11,14 +16,27 @@ package com.app;
 // import tema1.tarea9.*;
 // import tema1.tarea10.*;
 // import modelos.examen2.*;
-import tema2.tarea2.*;
+// import tema2.tarea2.*;
+import tema2.tarea3.*;
 
 public class Main {
-    public static void main(String[] args) {
-        Arbol A1 = new Arbol();
-        A1.generarElem(10, 1, 9);
-        A1.inOrden();
-        A1.preOrden();
-        A1.postOrden();
+    public static void main(String[] args) throws IOException {
+        // ArbolEntero A1 = new ArbolEntero();
+        // System.out.println("\n");
+        // A1.generarElemRandom(10, 1, 9);
+        // A1.mostrarMenorMayor();
+        // A1.mostrarMayorMenor();
+        ArbolCadena A2 = new ArbolCadena();
+        System.out.println(new File("documento.txt").getAbsolutePath());
+        System.out.println("\n");
+        BufferedReader reader = new BufferedReader(new FileReader("texto.txt"));
+        String linea;
+        while ((linea = reader.readLine()) != null) {
+            A2.leerCadena(linea.toLowerCase());
+        }
+        reader.close();
+
+        A2.mostrarMenorMayor();
+        A2.mostrarMayorMenor();
     }
 }
