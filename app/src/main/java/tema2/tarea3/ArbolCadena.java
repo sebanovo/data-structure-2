@@ -1,8 +1,6 @@
 package tema2.tarea3;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 public class ArbolCadena {

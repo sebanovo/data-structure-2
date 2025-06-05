@@ -27,6 +27,6 @@ public class Main {
         A2.cargarArchivo("texto.txt");
 
         A2.mostrarMenorMayor();
-        A2.mostrarMayorMenor();
+        // A2.mostrarMayorMenor();
     }
 }
