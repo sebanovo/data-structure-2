@@ -14,19 +14,14 @@ import java.io.IOException;
 // import tema1.tarea10.*;
 // import modelos.examen2.*;
 // import tema2.tarea2.*;
-import tema2.tarea3.*;
+// import tema2.tarea3.*;
+import tema2.tarea4.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        // ArbolEntero A1 = new ArbolEntero();
-        // System.out.println("\n");
-        // A1.generarElemRandom(10, 1, 9);
-        // A1.mostrarMenorMayor();
-        // A1.mostrarMayorMenor();
-        ArbolCadena A2 = new ArbolCadena();
-        A2.cargarArchivo("texto.txt");
-
-        // A2.mostrarMenorMayor();
-        A2.mostrarMayorMenor();
+        Lista l1 = new Lista();
+        l1.generarElemRandom(10, -100, 100);
+        // l1.mostrarMenorMayor();
+        // l1.mostrarMayorMenor();
     }
 }
