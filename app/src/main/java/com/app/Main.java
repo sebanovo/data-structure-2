@@ -15,13 +15,14 @@ import java.io.IOException;
 // import modelos.examen2.*;
 // import tema2.tarea2.*;
 // import tema2.tarea3.*;
-import tema2.tarea4.*;
+// import tema2.tarea4.*;
+import tema2.tarea5.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         Lista l1 = new Lista();
-        l1.generarElemRandom(10, -100, 100);
-        // l1.mostrarMenorMayor();
-        // l1.mostrarMayorMenor();
+        l1.cargarArchivo(
+                "C:\\Users\\HP\\Documents\\Ejercicios\\Java\\app\\app\\src\\\\main\\java\\tema2\\tarea5\\Startup.txt");
+        l1.mostrarMenorMayor();
     }
 }
