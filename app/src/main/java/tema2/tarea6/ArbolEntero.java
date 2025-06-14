@@ -333,5 +333,10 @@ public class ArbolEntero {
 
     return p;
   }
-
+  /**
+   * Bibliografia:
+   * https://utilities-library.vercel.app/classes/BinarySearchTree.html
+   * https://github.com/sebanovo/utilities-library/blob/master/src/class/binarysearchtree/binarysearch.tree.ts#L11
+   * https://chatgpt.com/
+   */
 }
