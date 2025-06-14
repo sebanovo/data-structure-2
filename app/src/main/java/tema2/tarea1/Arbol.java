@@ -219,7 +219,7 @@ public class Arbol {
 
   private int altura(Nodo p) {
     if (p == null) {
-      return -1; // si consideras altura de hoja = 0
+      return 0;
     }
     int altIzq = altura(p.izq);
     int altDer = altura(p.der);
