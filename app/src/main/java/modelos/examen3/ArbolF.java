@@ -8,6 +8,20 @@ public class ArbolF {
     raiz = null;
   }
 
+  public void inOrden() {
+    inOrden(raiz);
+    System.out.print('\n');
+  }
+
+  private void inOrden(NodoF p) {
+    if (p == null) {
+      return;
+    }
+    inOrden(p.izq);
+    System.out.print(p.elem + " - " + p.frec + '\n');
+    inOrden(p.der);
+  }
+
   public void insertar(int x) {
     raiz = insertar(x, raiz);
   }

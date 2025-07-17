@@ -13,6 +13,14 @@ public class Lista {
     this.cantElem = 0;
   }
 
+  public void inOrden() {
+    for (int i = 0; i < MAX; i++) {
+      if (elem[i].raiz == null)
+        continue;
+      elem[i].inOrden();
+    }
+  }
+
   public void insertar(int x) {
     int digitoFinal = Math.abs(x % 10);
     elem[digitoFinal].insertar(x);
@@ -32,7 +40,7 @@ public class Lista {
   public int totalFrecuencias() {
     int total = 0;
     for (int i = 0; i < MAX; i++) {
-      if (elem[i] == null)
+      if (elem[i].raiz == null)
         continue;
       total += elem[i].totalFrecuencia();
     }
@@ -47,7 +55,7 @@ public class Lista {
   public int totalFrecuenciasPares() {
     int total = 0;
     for (int i = 0; i < MAX; i++) {
-      if (elem[i] == null)
+      if (elem[i].raiz == null)
         continue;
       int frec = elem[i].totalFrecuencia();
       if (frec % 2 == 0) {
@@ -65,7 +73,7 @@ public class Lista {
   public int totalFrecuenciasImpares() {
     int total = 0;
     for (int i = 0; i < MAX; i++) {
-      if (elem[i] == null)
+      if (elem[i].raiz == null)
         continue;
       int frec = elem[i].totalFrecuencia();
       if (frec % 2 == 1) {
@@ -81,7 +89,7 @@ public class Lista {
   public int frecuenciaMayor() {
     int frecM = 0;
     for (int i = 0; i < MAX; i++) {
-      if (elem[i] == null)
+      if (elem[i].raiz == null)
         continue;
       int frec = elem[i].totalFrecuencia();
       if (frecM < frec) {
@@ -97,7 +105,7 @@ public class Lista {
   public int frecuenciaMenor() {
     int frecM = Integer.MAX_VALUE;
     for (int i = 0; i < MAX; i++) {
-      if (elem[i] == null)
+      if (elem[i].raiz == null)
         continue;
       int frec = elem[i].totalFrecuencia();
       if (frecM > frec) {

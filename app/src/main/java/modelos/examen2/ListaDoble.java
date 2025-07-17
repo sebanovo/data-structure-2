@@ -209,14 +209,14 @@ public class ListaDoble {
   // iterativo
   public int menorElem() {
     Nodo p = prim;
-    int mayor = p.elem;
+    int menor = p.elem;
     while (p != null) {
-      if (mayor < p.elem) {
-        mayor = p.elem;
+      if (menor > p.elem) {
+        menor = p.elem;
       }
       p = p.prox;
     }
-    return mayor;
+    return menor;
   }
 
   // recursivo
@@ -224,14 +224,14 @@ public class ListaDoble {
     return menorElemR(prim, prim.elem);
   }
 
-  private int menorElemR(Nodo p, int mayor) {
+  private int menorElemR(Nodo p, int menor) {
     if (p == null) {
-      return mayor;
+      return menor;
     } else {
-      if (mayor < p.elem) {
-        mayor = p.elem;
+      if (menor > p.elem) {
+        menor = p.elem;
       }
-      return menorElemR(p.prox, mayor);
+      return menorElemR(p.prox, menor);
     }
   }
 
