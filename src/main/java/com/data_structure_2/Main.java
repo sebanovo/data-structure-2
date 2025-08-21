@@ -1,4 +1,4 @@
-package com.app;
+package com.data_structure_2;
 
 import java.io.IOException;
 import java.util.ArrayList;
